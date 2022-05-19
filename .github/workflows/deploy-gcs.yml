@@ -6,7 +6,8 @@ on:
     branches:
       - main
     paths:
-      - 'src/**'
+      - '.github/workflows/deploy-gcs.yml'
+      - 'src/**'      
 
 defaults:
   run:
