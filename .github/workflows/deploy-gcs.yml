@@ -26,7 +26,7 @@ jobs:
           credentials_json: ${{ secrets.GCS_CREDENTIALS }}
 
       - name: Setup gcloud / gsutil
-        uses: google-github-actions/setup-gcloud@master
+        uses: google-github-actions/setup-gcloud@v0
 
       - name: Publish repo contents
         env:
