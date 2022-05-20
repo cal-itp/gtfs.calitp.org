@@ -1,0 +1,32 @@
+body {
+  font-family: Helvetica,sans-serif;
+  margin: 9px;
+  font-size: 13px;
+}
+
+table {
+  border: 1px solid black;
+  font-size: 13px;
+}
+
+th {
+  border-bottom: 1px #000 solid;
+  text-align: left;
+  padding: 3px;
+  background-color: #ccc;
+}
+
+td {
+  margin: 0px;
+  padding: 3px;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 1px #999 solid;
+  border-left: 0;
+  text-align: left;
+}
+
+p {
+  margin-top: 4px;
+  margin-bottom: 10px;
+}
