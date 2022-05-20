@@ -19,7 +19,7 @@ jobs:
       run: |
         netlify deploy \
           --dir="src" \
-          --alias="${GITHUB_REPOSITORY#*/}-${{ github.event.number }}"
+          --alias="gtfs-calitp-org-${{ github.event.number }}"
       env:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_PREVIEW_APP_AUTH_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_PREVIEW_APP_SITE_ID }}
@@ -34,5 +34,5 @@ jobs:
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            body: `Preview url: https://${context.repo.repo}-${{ github.event.number }}--${hostnameSuffix}`,
+            body: `Preview url: https://gtfs-calitp-org-${{ github.event.number }}--${hostnameSuffix}`,
           })
