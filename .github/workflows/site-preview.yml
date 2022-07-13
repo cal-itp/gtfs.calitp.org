@@ -27,10 +27,9 @@ jobs:
     - name: Add netlify link PR comment
       uses: actions/github-script@v6
       with:
-        github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
           const hostnameSuffix = "cal-itp-previews.netlify.app"
-          github.issues.createComment({
+          github.rest.issues.createComment({
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
