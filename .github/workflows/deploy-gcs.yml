@@ -29,6 +29,9 @@ jobs:
       - name: Setup gcloud / gsutil
         uses: google-github-actions/setup-gcloud@v0
 
+      - name: Write commit SHA to file
+        run: echo "${{ github.sha }}" >> src/sha.txt
+
       - name: Publish repo contents
         env:
           GCS_BUCKET: ${{ secrets.GCS_BUCKET }}
