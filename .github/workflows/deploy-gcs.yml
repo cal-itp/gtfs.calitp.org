@@ -27,7 +27,7 @@ jobs:
           credentials_json: ${{ secrets.GCS_CREDENTIALS }}
 
       - name: Setup gcloud / gsutil
-        uses: google-github-actions/setup-gcloud@v0
+        uses: google-github-actions/setup-gcloud@v1
 
       - name: Write commit SHA to file
         run: echo "${{ github.sha }}" >> src/sha.txt
