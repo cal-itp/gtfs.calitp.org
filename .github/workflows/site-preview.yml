@@ -18,11 +18,10 @@ jobs:
     - name: Deploy Preview to Netlify
       run: |
         netlify deploy \
+          --alias="gtfs-calitp-org-${{ github.event.number }}" \
+          --auth=${{ secrets.NETLIFY_AUTH_TOKEN }} \
           --dir="src" \
-          --alias="gtfs-calitp-org-${{ github.event.number }}"
-      env:
-        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_PREVIEW_APP_SITE_ID }}
+          --site=${{ secrets.NETLIFY_PREVIEW_APP_SITE_ID }}
 
     - name: Add netlify link PR comment
       uses: actions/github-script@v7
