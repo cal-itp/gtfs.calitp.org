@@ -1,0 +1,57 @@
+name: Terraform Plan
+
+on:
+  pull_request:
+    paths:
+      - 'iac/**'
+
+env:
+  SERVICE_ACCOUNT: 'github-actions-service-account@cal-itp-data-infra.iam.gserviceaccount.com'
+  WORKLOAD_IDENTITY_PROVIDER: 'projects/1005246706141/locations/global/workloadIdentityPools/github-actions/providers/gtfs-calitp-org'
+  PROJECT_ID: 'cal-itp-data-infra'
+
+jobs:
+  plan:
+    name: Plan
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Authenticate Google Service Account
+        uses: google-github-actions/auth@v2
+        with:
+          create_credentials_file: true
+          project_id: ${{ env.PROJECT_ID }}
+          workload_identity_provider: ${{ env.WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ env.SERVICE_ACCOUNT }}
+
+      - name: Setup GCloud utilities
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Write commit SHA to file
+        run: echo "${{ github.sha }}" >> src/sha.txt
+
+      - name: Terraform Formatting
+        uses: dflook/terraform-fmt-check@v1
+        with:
+          path: iac/
+
+      - name: Terraform Validation
+        uses: dflook/terraform-validate@v1
+        with:
+          path: iac/
+
+      - name: Terraform Plan
+        uses: dflook/terraform-plan@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          add_github_comment: changes-only
+          path: iac/
