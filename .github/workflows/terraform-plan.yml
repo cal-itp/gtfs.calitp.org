@@ -39,7 +39,7 @@ jobs:
         run: echo "${{ github.sha }}" >> src/sha.txt
 
       - name: Terraform Formatting
-        uses: dflook/terraform-fmt-check@v1
+        uses: dflook/terraform-fmt-check@v2
         with:
           path: iac/
 
