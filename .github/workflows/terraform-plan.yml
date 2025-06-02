@@ -44,7 +44,7 @@ jobs:
           path: iac/
 
       - name: Terraform Validation
-        uses: dflook/terraform-validate@v1
+        uses: dflook/terraform-validate@v2
         with:
           path: iac/
 
