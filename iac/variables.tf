@@ -1,5 +1,5 @@
 locals {
-  files = fileset("../src", "*")
+  files = fileset("../src", "**/*")
 }
 
 data "terraform_remote_state" "gcs" {
