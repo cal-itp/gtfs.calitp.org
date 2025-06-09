@@ -12,6 +12,14 @@ resource "google_storage_bucket_object" "gtfs-calitp-org" {
         ".html" = "text/html"
         ".json" = "application/json"
         ".js"   = "application/javascript"
+        ".png"  = "image/png"
+        ".jpg"  = "image/jpeg"
+        ".jpeg" = "image/jpeg"
+        ".gif"  = "image/gif"
+        ".svg"  = "image/svg+xml"
+        ".webp" = "image/webp"
+        ".ico"  = "image/x-icon"
+        ".zip"  = "application/zip"
       },
       lower(regexall("\\.[^.]+$", each.value)[0]),
       "text/plain"
