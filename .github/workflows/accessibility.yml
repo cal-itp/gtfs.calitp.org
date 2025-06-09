@@ -1,0 +1,27 @@
+name: Accessibility checking
+
+on:
+  pull_request:
+    paths:
+      - 'src/**'
+
+jobs:
+  axe:
+    name: axe
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup node
+        uses: actions/setup-node@v4
+      - name: Serve src
+        working-directory: src
+        run: npx serve &
+      - name: Run axe
+        run: npx @axe-core/cli http://localhost:3000 --exit
