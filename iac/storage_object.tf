@@ -5,7 +5,7 @@ resource "google_storage_bucket_object" "gtfs-calitp-org" {
   bucket   = data.terraform_remote_state.gcs.outputs.google_storage_bucket_calitp-gtfs_name
 
   content_type = (
-    length(regexall("\\.[^.]+$", each.value)) > 0 ?
+    length(regexall("\.[^.]+$", each.value)) > 0 ?
     lookup(
       {
         ".css"  = "text/css"
@@ -13,7 +13,7 @@ resource "google_storage_bucket_object" "gtfs-calitp-org" {
         ".json" = "application/json"
         ".js"   = "application/javascript"
       },
-      lower(regex("\\.[^.]+$", each.value)[0]),
+      lower(regex("\.[^.]+$", each.value)[0]),
       "text/plain"
     ) :
     "text/plain"
