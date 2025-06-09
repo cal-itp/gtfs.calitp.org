@@ -1,29 +1,8 @@
 resource "google_storage_bucket_object" "gtfs-calitp-org" {
-  for_each = local.files
-  name     = each.value
-  source   = "../src/${each.value}"
-  bucket   = data.terraform_remote_state.gcs.outputs.google_storage_bucket_calitp-gtfs_name
-
-  content_type = (
-    length(regexall("\\.[^.]+$", each.value)) > 0 ?
-    lookup(
-      {
-        ".css"  = "text/css"
-        ".html" = "text/html"
-        ".json" = "application/json"
-        ".js"   = "application/javascript"
-        ".png"  = "image/png"
-        ".jpg"  = "image/jpeg"
-        ".jpeg" = "image/jpeg"
-        ".gif"  = "image/gif"
-        ".svg"  = "image/svg+xml"
-        ".webp" = "image/webp"
-        ".ico"  = "image/x-icon"
-        ".zip"  = "application/zip"
-      },
-      lower(regexall("\\.[^.]+$", each.value)[0]),
-      "text/plain"
-    ) :
-    "text/plain"
-  )
+  for_each     = module.template_files.files
+  bucket       = data.terraform_remote_state.gcs.outputs.google_storage_bucket_calitp-gtfs_name
+  name         = each.key
+  content_type = each.value.content_type
+  source       = each.value.source_path
+  content      = each.value.content
 }

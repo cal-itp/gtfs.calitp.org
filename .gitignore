@@ -1,2 +1,3 @@
 .DS_Store
 iac/.terraform
+src/sha.txt
