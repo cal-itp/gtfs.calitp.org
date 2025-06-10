@@ -1,5 +1,6 @@
-locals {
-  files = fileset("../src", "**/*")
+module "template_files" {
+  source   = "hashicorp/dir/template"
+  base_dir = "../src"
 }
 
 data "terraform_remote_state" "gcs" {
