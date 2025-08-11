@@ -1,6 +1,6 @@
 # gtfs.calitp.org
 
-This repository contains the web content for [`gtfs.calitp.org`](https://gtfs.calitp.org).
+This repository contains the web content for [`gtfs.dds.dot.ca.gov`](https://gtfs.dds.dot.ca.gov).
 
 ## PR Previews
 
