@@ -34,7 +34,7 @@ jobs:
           service_account: ${{ env.SERVICE_ACCOUNT }}
 
       - name: Setup GCloud utilities
-        uses: google-github-actions/setup-gcloud@v2
+        uses: google-github-actions/setup-gcloud@v3
 
       - name: Write commit SHA to file
         run: echo "${{ github.sha }}" >> src/sha.txt
