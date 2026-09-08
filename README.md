@@ -35,6 +35,10 @@ $ terraform plan
 
 These changes will be automatically applied by a Github Action after a pull request containing these changes is merged.
 
+## Tutorials
+
+Please visit https://caltrans.sharepoint.com/:v:/s/DOTPMPHQ-DataandDigitalServices/IQB37eMagV8oSpT1dLOzm1EEAUNYGiht0-4xwAToE3FDGAs?e=iK6WxB for a tutorial video on how to update, add, or delete a GTFS URL on the website. 
+
 ## License
 
 All source code is licensed under [Apache 2.0](./LICENSE)
